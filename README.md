@@ -1,0 +1,73 @@
+# dynapage
+
+Dynamically-loaded HTML pages
+
+## Introduction
+
+Third party-hosted CMSes can be quite disturbing sometimes, especially when updating existing pages requires a lot of efforts. This project allows users to load a relatively large page with only a 'stub'.
+
+## Usage
+
+See `index.html` for skeleton code, or copy it from below:
+```html
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dynapage</title>
+</head>
+
+<body>
+    <div hidden="" id="dynapage-config">
+        <div id="dynapage-html-src" data-method="[HTTP METHOD TO YOUR PAGE]"
+            data-source="[FILL YOUR HTML PAGE SOURCE HERE]"></div>
+        <div id="dynapage-js-deps">
+            <div data-source="[FILL YOUR JAVASCRIPT DEPENDENCY SOURCE 1 HERE]"></div>
+            <div data-source="[FILL YOUR JAVASCRIPT DEPENDENCY SOURCE 2 HERE]" data-crossorigin="[CORS SETTINGS HERE]"
+                data-integrity="[HASHES HERE]"></div>
+            <!-- ... n more -->
+        </div>
+    </div>
+
+    <div id="dynapage-container">
+        <!-- Your page content will be filled here. -->
+    </div>
+
+    <script>
+        const elemConfig = document.getElementById('dynapage-config')
+        const elemSrc = document.querySelector('#dynapage-config > #dynapage-html-src')
+        const pageSrc = elemSrc.dataset.source
+        const pageMeth = elemSrc.dataset.method
+        const htmlXhr = new XMLHttpRequest()
+        htmlXhr.addEventListener('load', () => {
+            if (htmlXhr.status === 200) {
+                const elemContainer = document.getElementById('dynapage-container')
+                const elemWrapper = document.createElement('div')
+                elemWrapper.innerHTML = htmlXhr.responseText
+                elemContainer.insertAdjacentElement('beforeend', elemWrapper)
+
+                const jsDeps = document.querySelectorAll('#dynapage-config > #dynapage-js-deps > div')
+                for (let idx = 0; idx < jsDeps.length; idx++) {
+                    const dep = jsDeps[idx];
+                    const depDataset = dep.dataset
+                    const elemJs = document.createElement('script')
+                    elemJs.setAttribute('src', depDataset.source)
+                    if (depDataset.hasOwnProperty('crossorigin')) {
+                        elemJs.setAttribute('crossorigin', depDataset.crossorigin)
+                    }
+                    if (depDataset.hasOwnProperty('integrity')) {
+                        elemJs.setAttribute('integrity', depDataset.integrity)
+                    }
+                    elemContainer.insertAdjacentElement('beforeend', elemJs)
+                }
+            }
+        })
+        htmlXhr.open(pageMeth, pageSrc)
+        htmlXhr.send()
+    </script>
+</body>
+
+</html>
+```
+
+See `examples/*` for usage notes and runnable code.

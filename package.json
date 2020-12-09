@@ -1,0 +1,28 @@
+{
+  "name": "dynapage",
+  "version": "0.1.0",
+  "description": "Dynamically-loaded HTML pages",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CSharperMantle/dynapage.git"
+  },
+  "keywords": [
+    "dynamic",
+    "html"
+  ],
+  "author": "CSharperMantle",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/CSharperMantle/dynapage/issues"
+  },
+  "homepage": "https://github.com/CSharperMantle/dynapage#readme",
+  "devDependencies": {
+    "eslint": "^7.15.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-html": "^6.1.1"
+  }
+}
