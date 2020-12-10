@@ -37,7 +37,7 @@
 
                 const jsDeps = document.querySelectorAll('#dynapage-config > #dynapage-js-deps > div')
                 for (let idx = 0; idx < jsDeps.length; idx++) {
-                    const dep = jsDeps[idx];
+                    const dep = jsDeps[idx]
                     const depDataset = dep.dataset
                     const elemJs = document.createElement('script')
                     elemJs.setAttribute('src', depDataset.source)

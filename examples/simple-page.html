@@ -13,37 +13,6 @@
 
     <div id="dynapage-container"><!-- Your page will be filled here. --></div>
 
-    <script>
-        const elemConfig = document.getElementById('dynapage-config')
-        const elemSrc = document.querySelector('#dynapage-config > #dynapage-html-src')
-        const pageSrc = elemSrc.dataset.source
-        const pageMeth = elemSrc.dataset.method
-        const htmlXhr = new XMLHttpRequest()
-        htmlXhr.addEventListener('load', () => {
-            if (htmlXhr.status === 200) {
-                const elemContainer = document.getElementById('dynapage-container')
-                const elemWrapper = document.createElement('div')
-                elemWrapper.innerHTML = htmlXhr.responseText
-                elemContainer.insertAdjacentElement('beforeend', elemWrapper)
-
-                const jsDeps = document.querySelectorAll('#dynapage-config > #dynapage-js-deps > div')
-                for (let idx = 0; idx < jsDeps.length; idx++) {
-                    const dep = jsDeps[idx];
-                    const depDataset = dep.dataset
-                    const elemJs = document.createElement('script')
-                    elemJs.setAttribute('src', depDataset.source)
-                    if (depDataset.hasOwnProperty('crossorigin')) {
-                        elemJs.setAttribute('crossorigin', depDataset.crossorigin)
-                    }
-                    if (depDataset.hasOwnProperty('integrity')) {
-                        elemJs.setAttribute('integrity', depDataset.integrity)
-                    }
-                    elemContainer.insertAdjacentElement('beforeend', elemJs)
-                }
-            }
-        })
-        htmlXhr.open(pageMeth, pageSrc)
-        htmlXhr.send()
-    </script>
+    <script>var elemConfig=document.getElementById("dynapage-config");var elemSrc=document.querySelector("#dynapage-config > #dynapage-html-src");var pageSrc=elemSrc.dataset.source;var pageMeth=elemSrc.dataset.method;var htmlXhr=new XMLHttpRequest();htmlXhr.addEventListener("load",function(){if(htmlXhr.status===200){var elemContainer=document.getElementById("dynapage-container");var elemWrapper=document.createElement("div");elemWrapper.innerHTML=htmlXhr.responseText;elemContainer.insertAdjacentElement("beforeend",elemWrapper);var jsDeps=document.querySelectorAll("#dynapage-config > #dynapage-js-deps > div");for(var idx=0;idx<jsDeps.length;idx++){var dep=jsDeps[idx];var depDataset=dep.dataset;var elemJs=document.createElement("script");elemJs.setAttribute("src",depDataset.source);if(depDataset.hasOwnProperty("crossorigin")){elemJs.setAttribute("crossorigin",depDataset.crossorigin)}if(depDataset.hasOwnProperty("integrity")){elemJs.setAttribute("integrity",depDataset.integrity)}elemContainer.insertAdjacentElement("beforeend",elemJs)}}});htmlXhr.open(pageMeth,pageSrc);htmlXhr.send();</script>
 </body>
 </html>
