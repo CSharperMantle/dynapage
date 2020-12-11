@@ -1,6 +1,6 @@
 {
   "name": "dynapage",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "Dynamically-loaded HTML pages",
   "main": "index.html",
   "scripts": {
