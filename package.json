@@ -2,7 +2,6 @@
   "name": "dynapage",
   "version": "0.1.2",
   "description": "Dynamically-loaded HTML pages",
-  "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
